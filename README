@@ -1,0 +1,34 @@
+=========
+A program to compute realtime winning odds for Loto games
+=========
+
+This is a toy program to compute in realtime your odds to win Loto games.
+
+In a loto game, you are handed out cards with k boxes numbered from 1 to n. Typically
+k = 15 and n = 90. The referee draws balls from an urn, numbered from 1 to n, and players
+tick the corresponding number if they have it on their card. The first player to tick all the
+k numbers on the card wins.
+
+Usage:
+
+- Edit Loto.hs and edit n and k according to your game format. 
+
+  n is the total number of balls in the urn (from 1 to n)
+  k is how many numbers are on a card
+
+- Run ghci, load the code, call the runCard function, passing it the list of numbers on your card.
+
+  $ ghci
+  Prelude> :l Loto.hs
+  *Main> runCard [1..15]
+
+- runCard is an interactive loop that repeatedly prompts you for the next number. Each turn it displays a few statistics:
+
+  - Your Card: your card, crossed numbers in green, missing numbers in red
+  - Out balls: all numbers that have been drawn are in green, remaining numbers in red
+  - Good: how many numbers on your card have already been drawn
+  - Winning bracket: the odds of your card being strictly better, or better or equals, than a random other card
+  - Dominating: this is 1/(1-winning bracket), or the expected maximum number of adversaries you can have for your card to be the best one.
+  - Expected rounds to completion: the expectancy of the number of draw you will need to complete your card
+  - Odds to win after r,r+1,r+2... steps: the odds that your r missing numbers will be drawn in the next corresponding number of rounds
+  - Estimated cards with 1,2,.. holes: the expected proportion of randomly drawn cards with the corresponding amount of not yet drawn numbers
